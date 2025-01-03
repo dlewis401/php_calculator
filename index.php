@@ -70,7 +70,7 @@
 				case "divide":
 					$result = $num1 / $num2;
 					break;
-				// Default is there is no valid operation
+				// Default if there is no valid operation
 				default:
 					echo "Nothing could be found to make a result from :(";
 					break;
