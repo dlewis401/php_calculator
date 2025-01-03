@@ -31,7 +31,7 @@
 
 	// IF THE SERVER RECEIVES A POST METHOD 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		// REMOVE STRINGS FROM FLOAT NUMBERS TO SANITIZE DATA (PREVENTING MALICIOUS USE)
+		// REMOVE ILLEGAL CHARACTERS FROM FLOAT NUMBERS TO SANITIZE DATA (PREVENTING MALICIOUS USE)
 		$num1 = filter_input(INPUT_POST, "number1", FILTER_SANITIZE_NUMBER_FLOAT);
 		$num2 = filter_input(INPUT_POST, "number2", FILTER_SANITIZE_NUMBER_FLOAT);
 
@@ -42,7 +42,7 @@
 		$errorLog = false;
 		$result = 0;
 
-		// Checks if either of the inputs are empty and if so, display an error message (and keeps track of the errors)
+		// Checks if either of the inputs are empty and if so, display an error message (and keeps track of the errors by keeping a log variable, making it true if there are errors)
 		if (empty($num1) || empty($num2) || empty($operation)) {
 			echo "<p style='color: red'> Make sure all boxes are filled in </p>";
 			$errorLog = true;
@@ -70,13 +70,13 @@
 				case "divide":
 					$result = $num1 / $num2;
 					break;
-				// Default if there is no valid operation
+				// Default warning if there is no valid operation
 				default:
 					echo "Nothing could be found to make a result from :(";
 					break;
 			endswitch;
 
-			// Echos the final result
+			// Displays the final result on the webpage
 			echo "<p>Result: " . $result . "</p>";
 		};
 	};
